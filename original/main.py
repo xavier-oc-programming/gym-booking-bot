@@ -35,8 +35,8 @@ GYM_URL = "https://appbrewery.github.io/gym/"
 ADMIN_EMAIL = "admin@test.com"
 ADMIN_PASSWORD = "admin123"
 
-ACCOUNT_EMAIL = "xavierleisure@gmail.com"
-ACCOUNT_PASSWORD = "getfit123"
+ACCOUNT_EMAIL = "student@test.com"
+ACCOUNT_PASSWORD = "password123"
 
 DEFAULT_RETRIES = 7
 
