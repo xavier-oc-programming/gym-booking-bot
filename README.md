@@ -149,7 +149,7 @@ Output: console summary — counts of booked, waitlisted, already-reserved
 
 ### Both builds
 
-**Automated login** — clicks the Login button, fills in email and password, waits for the schedule page to confirm success.
+**Automated login** — clicks the Login button, fills in email and password, waits for the schedule page to confirm success. Chrome's password-breach popup is suppressed via `credentials_enable_service`, `password_manager_enabled`, and `password_manager_leak_detection` prefs so it never interrupts the run.
 
 **Smart booking** — reads the button label before clicking: "Book Class" → book, "Join Waitlist" → join waitlist, "Booked"/"Waitlisted" → already handled.
 
@@ -391,6 +391,8 @@ Copy `.env.example` to `.env` and fill in values.
 **`detach=True` in non-headless mode** — keeps the browser open after the script exits so you can visually inspect the result. Headless mode omits this (the process exits cleanly for CI).
 
 **`try/except` per booking, not around the whole loop** — if one class fails after all retries, the others still get booked. The retry wrapper raises only after exhausting all attempts.
+
+**Chrome password-breach popup suppressed via prefs** — `password123` is a known breached password; Chrome would normally show a blocking "Change your password" dialog mid-run. Setting `credentials_enable_service`, `profile.password_manager_enabled`, and `profile.password_manager_leak_detection` to `False` in ChromeOptions prefs prevents it entirely. A `--disable-features` flag would also work but prefs are more targeted.
 
 ---
 
