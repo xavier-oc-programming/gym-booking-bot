@@ -46,6 +46,13 @@ DEFAULT_RETRIES = 7
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
 
+# Suppress Chrome's "password found in data breach" popup
+chrome_options.add_experimental_option("prefs", {
+    "credentials_enable_service": False,
+    "profile.password_manager_enabled": False,
+    "profile.password_manager_leak_detection": False,
+})
+
 # Persistent browser profile for cookies, sessions, and saved state
 user_data_dir = str(Path(__file__).parent / "chrome_profile")
 os.makedirs(user_data_dir, exist_ok=True)

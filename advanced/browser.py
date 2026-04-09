@@ -31,6 +31,13 @@ class GymBrowser:
         CHROME_PROFILE_DIR.mkdir(parents=True, exist_ok=True)
         options.add_argument(f"--user-data-dir={CHROME_PROFILE_DIR}")
 
+        # Suppress Chrome's "password found in data breach" popup
+        options.add_experimental_option("prefs", {
+            "credentials_enable_service": False,
+            "profile.password_manager_enabled": False,
+            "profile.password_manager_leak_detection": False,
+        })
+
         if headless:
             options.add_argument("--headless=new")
             options.add_argument("--no-sandbox")
