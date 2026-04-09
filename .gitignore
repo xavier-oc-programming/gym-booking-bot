@@ -1,0 +1,15 @@
+**/__pycache__/
+.DS_Store
+.idea/
+.vscode/
+*.py[cod]
+.env
+*.log
+old_files/
+
+# Chrome profile (generated at runtime)
+original/chrome_profile/
+advanced/chrome_profile/
+chrome_profile/
+
+# Advanced output / data (none for this project)
