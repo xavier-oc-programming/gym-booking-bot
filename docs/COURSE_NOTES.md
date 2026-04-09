@@ -12,15 +12,15 @@ The course was structured as a step-by-step progression:
 | File | What it introduces |
 |---|---|
 | `0)_Day49_Goals.py` | Day outline (empty placeholder) |
-| `1)_Step1_...` | ChromeOptions, persistent profile, detach mode, basic navigation |
-| `2)_Step2_...` | WebDriverWait, explicit waits, automated login |
-| `3)_Step3_...` | CSS selector patterns, XPath ancestor traversal, booking a single class |
-| `4)_Step4_...` | Button state detection (Book / Waitlist / Booked / Waitlisted) |
-| `5)_Step5_...` | Action counters and console summary |
-| `6)_Step6_...` | Extending the filter to Tuesday **and** Thursday |
-| `7)_Step7_...` | Navigating to "My Bookings" page to verify bookings |
-| `8)_Step8_...` | Admin panel — time simulation (+3 days) for QA/testing |
-| `9)_Step9_...` | Network failure simulation, retry wrapper, resilience ← **used as original/main.py** |
+| `1)_Step1_Setup_Chrome_Profile_and_Basic_Navigation.py` | ChromeOptions, persistent profile, detach mode, basic navigation |
+| `2)_Step2_Automated_Login.py` | WebDriverWait, explicit waits, automated login |
+| `3)_Step3_Book_the_upcoming_Tuesday_class.py` | CSS selector patterns, XPath ancestor traversal, booking a single class |
+| `4)_Step4_Check_if_a_class_is_already_booked.py` | Button state detection (Book / Waitlist / Booked / Waitlisted) |
+| `5)_Step5_Add_counters_to_your_script_to_provide_a_neat_summary.py` | Action counters and console summary |
+| `6)_Step6_Class_Booking_Book_every_Tuesday_and_Thursday_class.py` | Extending the filter to Tuesday **and** Thursday |
+| `7)_Step7_Verify_Class_bookings_on_the_My_Bookings_Page.py` | Navigating to "My Bookings" page to verify bookings |
+| `8)_Step8_Time_Travel_Quality_Assurance_QA.py` | Admin panel — time simulation (+3 days) for QA/testing |
+| `9)_Step9_Add_Resilience_in_case_of_Network_Failures.py` | Network failure simulation, retry wrapper, resilience ← **used as original/main.py** |
 
 ## Credentials Note
 
