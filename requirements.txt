@@ -1,0 +1,10 @@
+# Python 3.10+ recommended
+# Install with: pip install -r requirements.txt
+
+selenium>=4.0.0
+python-dotenv>=1.0.0
+
+# ChromeDriver must be installed separately and available on PATH,
+# or use webdriver-manager:
+#   pip install webdriver-manager
+# and update browser.py to use ChromeDriverManager().install()

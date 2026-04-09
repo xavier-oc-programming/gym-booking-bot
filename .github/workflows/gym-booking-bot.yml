@@ -1,0 +1,32 @@
+name: Gym Booking Bot
+
+on:
+  schedule:
+    # Every Monday at 07:00 CET (UTC+1) = 06:00 UTC
+    # Note: during CEST (UTC+2, late March–late Oct) this runs at 08:00 local time.
+    # Adjust to '0 5 * * 1' during summer if you want 07:00 CEST.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:  # allows manual runs from the GitHub Actions tab
+
+jobs:
+  book-classes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run gym booking bot (headless)
+        run: python advanced/main.py
+        env:
+          ACCOUNT_EMAIL: ${{ secrets.ACCOUNT_EMAIL }}
+          ACCOUNT_PASSWORD: ${{ secrets.ACCOUNT_PASSWORD }}
+          HEADLESS: "true"

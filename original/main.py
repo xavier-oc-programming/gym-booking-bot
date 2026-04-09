@@ -23,6 +23,7 @@ from selenium.common.exceptions import (
     UnexpectedAlertPresentException,
     NoAlertPresentException,
 )
+from pathlib import Path
 import os
 import time
 
@@ -46,7 +47,7 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
 
 # Persistent browser profile for cookies, sessions, and saved state
-user_data_dir = os.path.join(os.getcwd(), "chrome_profile")
+user_data_dir = str(Path(__file__).parent / "chrome_profile")
 os.makedirs(user_data_dir, exist_ok=True)
 chrome_options.add_argument(f"--user-data-dir={user_data_dir}")
 
