@@ -201,7 +201,10 @@ def admin_enable_network_simulation():
 # ---------------------------------------------------------------------
 def find_tue_thu_6pm_class_cards():
     """Find all Tuesday/Thursday 6:00 PM class cards."""
+    import datetime
     wait.until(EC.presence_of_element_located((By.ID, "schedule-page")))
+    today_is_target = datetime.date.today().weekday() in (1, 3)  # 1=Tue, 3=Thu
+
     cards = driver.find_elements(By.CSS_SELECTOR, "div[id^='class-card-']")
     targets = []
 
@@ -211,26 +214,32 @@ def find_tue_thu_6pm_class_cards():
         )
         day_title = day_group.find_element(By.TAG_NAME, "h2").text
 
-        if "Tue" in day_title or "Thu" in day_title:
-            time_text = card.find_element(
-                By.CSS_SELECTOR, "p[id^='class-time-']"
-            ).text
-            if "6:00 PM" in time_text:
-                targets.append(card)
+        if "Tue" not in day_title and "Thu" not in day_title:
+            if not (today_is_target and "Today" in day_title):
+                continue
+
+        time_text = card.find_element(By.CSS_SELECTOR, "p[id^='class-time-']").text
+        if "6:00 PM" in time_text:
+            targets.append(card)
 
     return targets
 
 
 def book_class_card(card):
-    """Try to book or join waitlist for one card."""
+    """Try to book or join waitlist for one card. Returns False if network failed."""
     button = card.find_element(By.CSS_SELECTOR, "button[id^='book-button-']")
     label = button.text.strip().lower()
 
-    if "book class" in label or "join waitlist" in label:
-        button.click()
-        return True
     if "booked" in label or "waitlisted" in label:
         return True
+    if "book class" in label or "join waitlist" in label:
+        button.click()
+        for _ in range(6):  # wait up to 3s for confirmation
+            time.sleep(0.5)
+            new_label = button.text.strip().lower()
+            if "booked" in new_label or "waitlisted" in new_label:
+                return True
+        return False  # network failed — retry
     return False
 
 
